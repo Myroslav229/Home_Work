@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
-enum WeekDay: int {
+enum class WeekDay: int {
 	Monday = 0,
 	Tuesdey = 1,
 	Wednesday = 2,
@@ -45,13 +45,20 @@ int main() {
 	std::cout << "Up to 10 scientific: " << std::setprecision(10) << std::scientific << accur << std::endl;
 
 
-	std::cout << " Number of Monday: " << Monday << std::endl;
-	std::cout << " Number of Monday: " << Tuesdey << std::endl;
-	std::cout << " Number of Monday: " << Wednesday << std::endl;
-	std::cout << " Number of Monday: " << Thursday << std::endl;
-	std::cout << " Number of Monday: " << Friday << std::endl;
-	std::cout << " Number of Monday: " << Saturday << std::endl;
-	std::cout << " Number of Monday: " << Sunday << std::endl;
+	WeekDay day = WeekDay::Monday;
+	std::cout << " Number of Monday: " << (int)day << std::endl;
+	day = WeekDay::Tuesdey;
+	std::cout << " Number of Tuesday: " << (int)day << std::endl;
+	day = WeekDay::Wednesday;
+	std::cout << " Number of Wednesday: " << (int)day << std::endl;
+	day = WeekDay::Thursday;
+	std::cout << " Number of Thursdayday: " << (int)day << std::endl;
+	day = WeekDay::Friday;
+	std::cout << " Number of Fridayday: " << (int)day << std::endl;
+	day = WeekDay::Saturday;
+	std::cout << " Number of Saturday: " << (int)day << std::endl;
+	day = WeekDay::Sunday;
+	std::cout << " Number of Sunday: " << (int)day << std::endl
 
 
 	bool b;
