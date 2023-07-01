@@ -7,9 +7,9 @@ int main() {
 	int sec, min = 0, hour = 0;
 	std::cout << "Enter time(sec): ";
 	std::cin >> sec;
-	hour = sec / 360;
+	hour = sec / 3600;
 	std::cout << "Hours: " << hour << std::endl;
-	sec = sec - hour * 360;
+	sec = sec - hour * 3600;
 	min = sec / 60;
 	std::cout << "Minutes: " << min << std::endl;
 	sec = sec - min * 60;
