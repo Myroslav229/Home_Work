@@ -8,23 +8,23 @@ int main() {
 	std::cout << "Enter time(sec): ";
 	std::cin >> sec;
 	hour = sec / 360;
+	std::cout << "Hours: " << hour << std::endl;
 	sec = sec - hour * 360;
 	min = sec / 60;
-	sec = sec - min * 60;
-	std::cout << "Hours: " << hour << std::endl;
 	std::cout << "Minutes: " << min << std::endl;
+	sec = sec - min * 60;
 	std::cout << "Seconds: " << sec << std::endl;
 
 
-	int a{}, b{}, c{};
+	float a{}, b{}, c{};
 	std::cout << "Enter first number: ";
 	std::cin >> a;
 	std::cout << "Enter second number: ";
 	std::cin >> b;
 	std::cout << "Enter third number: ";
 	std::cin >> c;
-	int sum = a + b + c;
-	int prod = a * b * c;
+	float sum = a + b + c;
+	float prod = a * b * c;
 	float arithmetic_mean = sum / 3;
 	std::cout << "Sum of numbers: " << sum << std::endl;
 	std::cout << "Product of numbers: " << prod << std::endl;
