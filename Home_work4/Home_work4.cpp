@@ -58,7 +58,7 @@ int main() {
 	std::cout << "Enter angles(degree): ";
 	std::cin >> alpha >> beta >> gamma;
 	if (alpha + beta + gamma == 180 && alpha < 0 && beta < 0 && gamma < 0) std::cout << "Triangle can be built\n";
-	else std::cout << "Triangle can't be built\n";
+	else std::cout << "Triangle can't be built\n ";
 
 
 	int mon{};
