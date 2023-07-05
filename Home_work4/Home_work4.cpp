@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 enum class Month :int {
 	January = 1,
@@ -57,7 +57,7 @@ int main() {
 	int alpha{}, beta{}, gamma{};
 	std::cout << "Enter angles(degree): ";
 	std::cin >> alpha >> beta >> gamma;
-	if (alpha + beta + gamma == 180 && alpha < 0 && beta < 0 && gamma < 0) std::cout << "Triangle can be built\n";
+	if (alpha + beta + gamma == 180 && alpha > 0 && beta > 0 && gamma > 0) std::cout << "Triangle can be built\n";
 	else std::cout << "Triangle can't be built\n ";
 
 
@@ -106,25 +106,25 @@ int main() {
 	default:
 		std::cout << "Entered wrong number ";
 	}
-	switch (mon) {
-	case 12:
-	case 1:
-	case 2:
+	switch (month) {
+	case Month::December:
+	case Month::January:
+	case Month::February:
 		std::cout << "Winter.";
 		break;
-	case 3:
-	case 4:
-	case 5:
+	case Month::March:
+	case Month::April:
+	case Month::May:
 		std::cout << "Spring.";
 		break;
-	case 6:
-	case 7:
-	case 8:
+	case Month::June:
+	case Month::July:
+	case Month::August:
 		std::cout << "Summer.";
 		break;
-	case 9:
-	case 10:
-	case 11:
+	case Month::September:
+	case Month::October:
+	case Month::November:
 		std::cout << "Autumn.";
 		break;
 	default:
