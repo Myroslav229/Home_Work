@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 enum class Month :int {
 	January = 1,
@@ -16,7 +16,7 @@ enum class Month :int {
 };
 
 int main() {
-	int first{}, second{}, third{}, counter{};
+	int first{}, second{}, third{}, max{};
 	std::cout << "Enter first number: ";
 	std::cin >> first;
 	std::cout << "Enter second number: ";
@@ -26,18 +26,18 @@ int main() {
 
 	if (first >= second) {
 		if (first >= third) {
-			counter = first;
+			max = first;
 		}
-		else counter = third;
+		else max = third;
 
 	}
 	else {
 		if (second >= third) {
-			counter = second;
+			max = second;
 		}
-		else counter = third;
+		else max = third;
 	}
-	std::cout << "Biggest number is: " << counter << std::endl;
+	std::cout << "Maximum is: " << max << std::endl;
 
 
 	int fir{}, sec{};
@@ -51,14 +51,14 @@ int main() {
 	int num{};
 	std::cout << "Enter number: ";
 	std::cin >> num;
-	if (num % 11 == 0 && num % 5 == 0) std::cout << "Тumber is divisible by 5 and 11\n";
-	else std::cout << "Тumber is not divisible by 5 and 11\n";
+	if (num % 11 == 0 && num % 5 == 0) std::cout << "Number is divisible by 5 and 11\n";
+	else std::cout << "Number is not divisible by 5 and 11\n";
 
 	int alpha{}, beta{}, gamma{};
 	std::cout << "Enter angles(degree): ";
 	std::cin >> alpha >> beta >> gamma;
-	if (alpha + beta + gamma == 180) std::cout << "Triangle can be built\n";
-	else std::cout << "Triangle can't be built\n";
+	if (alpha + beta + gamma == 180 && alpha < 0 && beta < 0 && gamma < 0) std::cout << "Triangle can be built\n";
+	else std::cout << "Triangle can't be built\n ";
 
 
 	int mon{};
@@ -106,10 +106,29 @@ int main() {
 	default:
 		std::cout << "Entered wrong number ";
 	}
-	if (mon < 0 || mon >12) std::cout << "season can't be determined.";
-	else if (mon == 12 || mon == 1 || mon == 2) std::cout << "Winter.";
-	else if (mon == 3 || mon == 4 || mon == 5) std::cout << "Spring.";
-	else if (mon == 6 || mon == 7 || mon == 8) std::cout << "Summer.";
-	else std::cout << "Autumn";
+	switch (mon) {
+	case 12:
+	case 1:
+	case 2:
+		std::cout << "Winter.";
+		break;
+	case 3:
+	case 4:
+	case 5:
+		std::cout << "Spring.";
+		break;
+	case 6:
+	case 7:
+	case 8:
+		std::cout << "Summer.";
+		break;
+	case 9:
+	case 10:
+	case 11:
+		std::cout << "Autumn.";
+		break;
+	default:
+		std::cout << "season can't be determined.";
+	}
 	return 0;
 }
