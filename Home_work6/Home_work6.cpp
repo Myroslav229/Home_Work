@@ -68,7 +68,7 @@ int main()
                 while (true) {
                     std::cin >> ansrow >> anscol;
                     if (ansrow == -1 || anscol == -1) break;
-                    else if (anscol < -1 || ansrow < -1) std::cout << "Entered wrong number\n";
+                    else if (anscol < -1 || ansrow < -1 || anscol > 7 || ansrow > 7) std::cout << "Entered wrong number\n";
                     else {
                         for (row = 0; row < 7; ++row) {
                             for (col = 0; col < 7; col++) {
