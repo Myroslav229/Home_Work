@@ -6,7 +6,7 @@ int main()
     std::cout << "Game start\n";
     while (true) {
         std::cout << "Ultimate quess quest\nEnter -1 for exit\nEnter -2 for Treasure hunter\nTry to guess number (0-50)\n";
-        int highscore = 0;
+        int highscore = -1;
         int score = 0;
         int ans = 0;
         int ansrow = 0, anscol = 0;
@@ -46,10 +46,7 @@ int main()
             }
             if (ans == -1 || ans == -2) break;
 
-            if (highscore == 0) {
-                highscore = score;
-            }
-            else if (score < highscore) {
+            if (score < highscore) {
                 highscore = score;
             }
             std::cout << "\nHighscore: " << highscore << std::endl;
@@ -81,14 +78,9 @@ int main()
                                 else if (anscol == col && anscol == generatedcol && ansrow != generatedrow && ansrow == row)
                                     field[row][col] = { 'c' };
                                 else field[row][col] = { '#' };
-                            }
-                        }
-
-                        for (row = 0; row < 7; ++row) {
-                            for (col = 0; col < 7; col++) {
                                 std::cout << (char)field[row][col];
                             }
-                            std::cout << std::endl;
+                             std::cout << std::endl;
                         }
                     }
                     score++;
@@ -100,10 +92,7 @@ int main()
                         break;
                     }
                 }
-                if (highscore == 0) {
-                    highscore = score;
-                }
-                else if (score < highscore) {
+                if (score < highscore) {
                     highscore = score;
                 }
                 std::cout << "Highscore: " << highscore << std::endl;
