@@ -10,7 +10,7 @@ int main()
         int score = 0;
         int ans = 0;
         int ansrow = 0, anscol = 0;
-        char field[7][7];
+        char field[7][7]{};
         int row = 0, col = 0;
         while (true)
         {
