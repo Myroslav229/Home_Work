@@ -78,7 +78,7 @@ int main()
                                 else if (anscol == col && anscol == generatedcol && ansrow != generatedrow && ansrow == row)
                                     field[row][col] = { 'c' };
                                 else field[row][col] = { '#' };
-                                std::cout << (char)field[row][col];
+                                std::cout << field[row][col];
                             }
                              std::cout << std::endl;
                         }
