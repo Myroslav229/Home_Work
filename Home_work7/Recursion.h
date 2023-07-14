@@ -2,4 +2,4 @@
 
 int factorialRecursion(int count);
 int increaseRecursion(int count);
-int reductionRecursion(int count);
+int decreaseRecursion(int count);

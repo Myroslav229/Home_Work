@@ -28,11 +28,11 @@ int main()
 	std::cout << "Increase calculated by cycle: " << std::endl;
 	increaseCycle(a);
 	std::cout << "Reduction calculated by cycle: " << std::endl;
-	reductionCycle(a);
+	decreaseCycle(a);
 	std::cout << "Factorial calculated by recursion: " << std::endl;
-	factorialRecursion(a);
+	std::cout << factorialRecursion(a) << std::endl ;
 	std::cout << "Increase calculated by recursion: " << std::endl;
 	increaseRecursion(a);
 	std::cout << "Reduction calculated by recursion: " << std::endl;
-	reductionRecursion(a);
+	decreaseRecursion(a);
 }

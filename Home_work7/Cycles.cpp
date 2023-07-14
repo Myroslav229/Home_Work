@@ -1,11 +1,11 @@
 #include <iostream>
 
 int factorialCycle(int count) {
-	int fract = 1;
+	int fact = 1;
 	for (int i = 1; i <= count; ++i) {
-		fract = fract * i;
+		fact = fact * i;
 	}
-	std::cout << fract << std::endl;
+	std::cout << fact << std::endl;
 	return 0;
 }
 int increaseCycle(int count) {
@@ -14,7 +14,7 @@ int increaseCycle(int count) {
 	}
 	return 0;
 }
-int reductionCycle(int count) {
+int decreaseCycle(int count) {
 	for (int i = count; i > 0; --i) {
 		std::cout << i << std::endl;
 	}

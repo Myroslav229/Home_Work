@@ -1,16 +1,9 @@
 #include <iostream>
 
-int factorial = 1;
+
 int factorialRecursion(int count) {
-	factorial = factorial * count;
-	if (count > 1) {
-		factorialRecursion(count - 1);
-	}
-	else {
-		std::cout << factorial << std::endl;
-		factorial = 1;
-	}
-	return 0;
+	if (count > 1) return count * factorialRecursion(count - 1);
+	else return count;
 }
 int increaseRecursion(int count) {
 	if (count > 1) {
@@ -19,10 +12,10 @@ int increaseRecursion(int count) {
 	std::cout << count << std::endl;
 	return 0;
 }
-int reductionRecursion(int count) {
+int decreaseRecursion(int count) {
 	std::cout << count << std::endl;
 	if (count > 1) {
-		reductionRecursion(count - 1);
+		decreaseRecursion(count - 1);
 	}
 	return 0;
 }
