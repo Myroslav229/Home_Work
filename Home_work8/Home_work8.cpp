@@ -19,8 +19,9 @@ void toUppercase(char str[]) {
     }
 }
 bool isPalindrom(const char str[]) {
+    int size = strlen(str);
     for (int i = 0; i < strlen(str) - 1; ++i) {
-        if (str[i] != str[strlen(str) - 1 - i])
+        if (str[i] != str[size - 1 - i])
         {
             return false;
         }
@@ -44,12 +45,16 @@ void parseStringLetters(const char str[], int& vowelsCount, int& constonantsCoun
     }
 }
 bool isEqual(const char str1[], const char str2[]) {
-    for (int i = 0; i < strlen(str1); ++i) {
-        if (str1[i] != str2[i])
-        {
-            return false;
+    if (strlen(str1) != strlen(str2)) return false;
+    else {
+        int size = strlen(str1);
+        for (int i = 0; i < size; ++i) {
+            if (str1[i] != str2[i])
+            {
+                return false;
+            }
+            else return true;
         }
-        else return true;
     }
 }
 
@@ -81,7 +86,7 @@ int main() {
     std::cout << "This word is palindrome is " << std::boolalpha << isPalindrom(str2) << std::endl;
     char str3[256]{};
     int vowelCount = 0, constonantCount = 0;
-    std::cout << "Enter word for ";
+    std::cout << "Enter word for checking wovels and consonants";
     std::cin >> str3;
     parseStringLetters(str3, vowelCount, constonantCount);
     std::cout << "Number of vowels: " << vowelCount << std::endl << "Number of constonants: " << constonantCount << std::endl;
