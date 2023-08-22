@@ -5,8 +5,8 @@ struct Student {
 	static const int markAmount = 4;
 	double mark[markAmount]{};
 };
-int averageMark(Student student) {
-	int sumMark{};
+float averageMark(Student student) {
+	float sumMark{};
 	for (int i = 0; i < student.markAmount; ++i) {
 		sumMark += student.mark[i];
 	}
