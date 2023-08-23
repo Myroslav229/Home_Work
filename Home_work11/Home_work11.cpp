@@ -28,16 +28,16 @@ void bubbleSort(int arr[], int size) {
 	}
 }
 
-int partition(int array[], int low, int high, int step)
+int partition(int array[], int low, int high)
 {
     int pivot = array[high];
 
     // idx of greater element
     int pointerIdx = (low - 1);
-
-    for (int j = low; j < high; j+=step)
+    
+    for (int j = low; j < high; j++)
     {
-        std::cout << &array[j] << ' ';
+        //std::cout << array[j] << ' ';
         if (array[j] <= pivot)
         {
             // if element smaller than pivot is found
@@ -47,7 +47,8 @@ int partition(int array[], int low, int high, int step)
             // swap element at i with element at j
             std::swap(array[pointerIdx], array[j]);
         }
-        if ((j) % 4 == 0) std::cout << std::endl;
+        
+        //std::cout << std::endl;
     }
 
     std::swap(array[pointerIdx + 1], array[high]);
@@ -55,38 +56,42 @@ int partition(int array[], int low, int high, int step)
     return (pointerIdx + 1);
 }
 
-void quickSort(int array[], int low, int high, int step)
+void quickSort(int array[], int low, int high)
 {
     if (low < high)
     {
-        int partition_idx = partition(array, low, high, step);
-        quickSort(array, low, partition_idx - 1, step);
-        quickSort(array, partition_idx + 1, high, step);
+        int partition_idx = partition(array, low, high);
+        quickSort(array, low, partition_idx - 1);
+        quickSort(array, partition_idx + 1, high);
     }
 }
 
 void quickSorting2D(int arr[], const int rows, const int columns, SortingDirection direction) {
+
+    
     int low = 0;
-    int step = 1;
     if (direction == SortingDirection::Rows) {
 
-        int high = columns - 1;
+        int high = rows - 1;
         for (int i = 0; i < rows; ++i) {
-            quickSort(&arr[i * rows], low, high, step);
+            quickSort(&arr[i * rows], low, high);
         }
     }
-    else if (direction == SortingDirection::Colums) {
-        step = rows;
+    else if (direction == SortingDirection::Colums) { 
         int high = rows-1;
         std::cout << std::endl;
-        /*for (int j = 0; j < rows; j++) {
-            for(int i = 0; i < columns; i++){
-            quickSort(&arr[i*rows+j], low, high*step, step);
-            std::cout << '\n';
+        for (int i = 0; i < rows; i++) {
+            for (int j = i+1; j < columns; j++) {
+                std::swap(arr[i * rows + j], arr[j * columns + i]);
             }
-        }*/
+        }
         for (int i = 0; i < columns; ++i) {
-            quickSort(&arr[i], low, high, step+i);
+            quickSort(&arr[i*columns], low, high);
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = i+1; j < columns; j++) {
+                std::swap(arr[i * rows + j], arr[j * columns + i]);
+            }
         }
     }
     else ;
@@ -103,7 +108,7 @@ int main()
     
     const int rows = 4;
     const int columns = 4;
-    int array2[rows][columns]{ {3,3,2,5}, {4,3,6,2}, {9, 9, 8, 4}, {6,7,8,4} };
+    int array2[rows][columns]{ {3,3,2,5}, {4,3,6,2}, {9, 9, 8, 4}, {6,7,8,4}};
     std::cout << "Second array before sorting:\n";
     write(&array2[0][0], rows, columns);
     std::cout << "Second array before sorting:\n";
