@@ -1,5 +1,9 @@
 ﻿#include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
+
+class Veapon; class Player; class Team;
 enum class Role {
 	Assault,
 	Support,
@@ -7,26 +11,32 @@ enum class Role {
 	Medic
 };
 class Rectangle {
+private:
+	float lenght{}, hight{};
 public:
-	float leght{}, hight{};
-	float getArea() {
-		return leght * hight;
+	
+	const float getArea() {
+		return lenght * hight;
 	}
-	float getPerimeter() {
-		return 2 * (leght + hight);
+	const float getPerimeter() {
+		return 2 * (lenght + hight);
 	}
-	Rectangle(float leght, float hight) : leght{ leght }, hight{ hight } {}
+	Rectangle(float leght, float hight) : lenght{ leght }, hight{ hight } {}
 	Rectangle() {
-		leght = 10;
-		hight = 8;
+		lenght = 0;
+		hight = 0;
 	}
 };
 class Weapon {
-public:
+	
+private:
+	friend Player;
 	std::string name;
 
 	float damage{};
 	float range{};
+public:
+	
 	Weapon() {
 		name = "Hand";
 		damage = 1.25;
@@ -37,20 +47,23 @@ public:
 		this->damage = damage;
 		this->range = range;
 	}
+	
 };
 class Player {
-public:
+private:
 	static const int bag = 2;
-	Weapon weapons[bag];
-	int weapon_counter = 0;
+	std::vector<Weapon *> weapons;
+	//Weapon weapons[bag];
+	//int weapon_counter = 0;
 	std::string name {};
 	Role role = Role::Assault;
 	float health = 50;
 	std::string team_name;
-	void addWeapon(Weapon weapon) {
-		if (weapon_counter < bag) {
-			weapons[weapon_counter] = weapon;
-			weapon_counter++;
+public:
+
+	void addWeapon(Weapon & weapon) {
+		if (weapons.size() < bag) {
+			weapons.emplace_back(&weapon);
 		}
 
 	}
@@ -70,11 +83,11 @@ public:
 			std::cout << "medic";
 			break;
 		}
-		if (weapon_counter == 0) std::cout << "\nNo weapon\n";
+		if (weapons.size() == 0) std::cout << "\nNo weapon\n";
 		else {
 			std::cout << "\nWeapon:\n";
-			for (int i = 0; i < weapon_counter; i++) {
-				std::cout << weapons[i].name << " damage: " << weapons[i].damage << " range: " << weapons[i].range << std::endl;
+			for (auto weapon: weapons) {
+				std::cout << weapon->name << " damage: " << weapon->damage << " range: " << weapon->range << std::endl;
 			}
 		}
 
@@ -85,28 +98,42 @@ public:
 		this->health = health;
 		this->role = role;
 	}
+	
+	Player & operator = (const Player & player) {
+		name = player.name;
+		health = player.health;
+		role = player.role;
+
+		return *this;
+	}
+	bool operator == (Player & player) {
+		if (this == &player) {
+			return true;
+		}
+		return false;
+	};
+	friend Team;
 };
 class Team {
-public:
+	friend Player;
+private:
 	std::string name;
-	int member_pointer = 0;
 	static const int team_size = 4;
-	Player* members[team_size];
-	void addPlayer(Player* player) {
-		if (member_pointer < team_size) {
-			members[member_pointer] = player;
-			player->team_name = name;
-			member_pointer++;
+	std::vector<Player *> members;
+public:
+	
+	void addPlayer(Player & player) {
+		if (members.size() < team_size) {
+			members.emplace_back(&player);
+			player.team_name = name;
 		}
+		
 	}
-	void removePlayer(Player* player) {
-		for (int i = 0; i < member_pointer; i++) {
-			if (members[i] == player) {
-				members[i] = members[member_pointer];
-				members[member_pointer] = NULL;
-				member_pointer--;
-			}
-		}
+	void removePlayer(Player & player) {
+		members.erase(std::remove_if(members.begin(), members.end(), [&](Player * member) {
+			return (member == &player);
+		}), members.end());
+		player.team_name = "NONE";
 	}
 	Team(std::string name) {
 		this->name = name;
@@ -120,8 +147,9 @@ int main() {
 	Player p("Antony", 100, Role::Assault);
 	Weapon w("Glock", 100, 400);
 	Team red("red");
-	red.addPlayer(&p);
+	red.addPlayer(p);
 	p.printPlayerInfo();
 	p.addWeapon(w);
+	red.removePlayer(p);
 	p.printPlayerInfo();
 }
