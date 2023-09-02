@@ -6,7 +6,7 @@
 
 class LengthComparator {
 public:
-    bool operator()(std::string& first, std::string& second) {
+    bool operator()(const std::string& first,const std::string& second) {
         return first.length() > second.length();
     }
 };
@@ -50,7 +50,7 @@ int main()
     write(stringContainer);
     std::sort(stringContainer.begin(), stringContainer.end(), LengthComparator{});
     write(stringContainer);
-    std::sort(stringContainer.begin(), stringContainer.end(), [](std::string first, std::string second) {
+    std::sort(stringContainer.begin(), stringContainer.end(), [](const std::string first,const std::string second) {
         return (first.length() < second.length());
         });
     write(stringContainer);
