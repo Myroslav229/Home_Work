@@ -9,21 +9,20 @@ public:
 
     //default c-tor
     DynamicArray() {
-        data = new T[size]{};
+        data = new T[size];
     };
 
     //c-tor with size
-    DynamicArray(std::size_t size) {
-        this->size = size;
-        capacity = size;
-        data = new T[size]{};
+    DynamicArray(std::size_t newCapacity) {
+        capacity = newCapacity;
+        data = new T[newCapacity];
     };
 
     //copy c-tor
     DynamicArray(const DynamicArray& other) {
         this->size = other.size;
         capacity = other.capacity;
-        data = new T[size]{};
+        data = new T[size];
         for (int i = 0; i < other.size; ++i) {
             data[i] = other.data[i];
         }
@@ -63,7 +62,7 @@ public:
         delete[] data;
         size = newSize;
         capacity = size;
-        data = new T[size]{};
+        data = new T[size];
     };
     std::size_t getSize() const {
         return this->size;
@@ -73,7 +72,7 @@ public:
     void clear() {
         delete[] data;
         size = 0;
-        data = new T[size]{};
+        data = new T[capacity];
     };
 
 
@@ -81,13 +80,13 @@ public:
     // Copy old content to new inner array
     // insert element at the last index
     // update size
-    void push_back(int element) {
+    void pushBack(T element) {
         if (capacity > size) {
             data[size] = element;
             size += 1;
         }
         else {
-            int* newArray = new T[size + 1]{};
+            T* newArray = new T[size + 1];
             for (int i = 0; i < size; ++i) {
                 newArray[i] = data[i];
             }
@@ -102,7 +101,7 @@ public:
 
     void reserve(std::size_t newCapacity) {
         if (newCapacity > capacity) {
-            int* newArray = new T[newCapacity]{};
+            int* newArray = new T[newCapacity];
             for (int i = 0; i < size; ++i) {
                 newArray[i] = data[i];
             }
@@ -113,7 +112,7 @@ public:
     }
     void shrinkToFit() {
         if (capacity > size) {
-            int* newArray = new T[size]{};
+            int* newArray = new T[size];
             for (int i = 0; i < size; ++i) {
                 newArray[i] = data[i];
             }
