@@ -27,9 +27,11 @@ public:
 };
 
 class Vector2D {
-public:
+private:
 	float x = 0.0;
 	float y = 0.0;
+public:
+	
 	Vector2D(float x, float y) : x{ x }, y{ y } {}
 	Vector2D& operator=(const Vector2D& secondVector) {
 		this->x = secondVector.x;
